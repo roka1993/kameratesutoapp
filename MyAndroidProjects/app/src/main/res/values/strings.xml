@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WeTalk</string>
+    <string name="phone_number_change"><u>修改手机号</u></string>
+    <string name="service_terms">查看我们的<u>服务条款</u></string>
+</resources>

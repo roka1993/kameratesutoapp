@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorBackgroundPurple">#6B44FF</color>
+    <color name="colorTextWhite">#ffffff</color>
+    <color name="colorTextBlack">#000000</color>
+    <color name="colorButtonBackgroundYellow">#FFFC01</color>
+    <color name="colorEditTextBackgroundPurple">#623EE8</color>
+    <color name="colorEditTextVerificationCodeBackgroundPurple">#6842FA</color>
+    <color name="colorCodeTextPurple">#997DFB</color>
+    <color name="colorChangePhoneNumberTextWhite">#A68EF2</color>
+
+</resources>
