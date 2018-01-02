@@ -1,26 +1,18 @@
 package com.talk.myapp.wetalk.tasks;
 
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.talk.myapp.wetalk.activitys.PictureMaskingActivity;
+import com.talk.myapp.wetalk.activitys.camera.PictureMaskingActivity;
 import com.talk.myapp.wetalk.utils.Consts;
 import com.talk.myapp.wetalk.utils.FileUtils;
 
-import java.io.File;
 import java.lang.ref.WeakReference;
-import java.util.Calendar;
-import java.util.Locale;
 
 /**
  * Created by 407973884 on 2017/12/17.

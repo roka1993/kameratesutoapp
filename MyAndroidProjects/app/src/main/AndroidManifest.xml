@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activitys.PhoneNumberInputActivity"
+            android:name=".activitys.login.PhoneNumberInputActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,14 +24,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activitys.VerificationCodeInputActivity" />
-        <activity android:name=".activitys.UserNameInputActivity" />
-        <activity android:name=".activitys.LoginFinishActivity" />
+        <activity android:name=".activitys.login.VerificationCodeInputActivity" />
+        <activity android:name=".activitys.login.UserNameInputActivity" />
+        <activity android:name=".activitys.login.LoginFinishActivity" />
         <activity
-            android:name=".activitys.CameraActivity"
+            android:name=".activitys.camera.CameraActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"></activity>
-        <activity android:name=".activitys.PictureMaskingActivity"
+        <activity android:name=".activitys.camera.PictureMaskingActivity"
             android:screenOrientation="portrait"></activity>
     </application>
 

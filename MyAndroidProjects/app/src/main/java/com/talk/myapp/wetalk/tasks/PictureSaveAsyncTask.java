@@ -1,20 +1,16 @@
 package com.talk.myapp.wetalk.tasks;
 
-import android.app.Application;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.talk.myapp.wetalk.activitys.CameraActivity;
-import com.talk.myapp.wetalk.activitys.LoginFinishActivity;
-import com.talk.myapp.wetalk.activitys.PictureMaskingActivity;
-import com.talk.myapp.wetalk.utils.Consts;
+import com.talk.myapp.wetalk.activitys.login.LoginFinishActivity;
+import com.talk.myapp.wetalk.activitys.camera.PictureMaskingActivity;
 import com.talk.myapp.wetalk.utils.FileUtils;
 import com.talk.myapp.wetalk.views.MaskingView;
 

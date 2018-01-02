@@ -1,8 +1,7 @@
-package com.talk.myapp.wetalk.activitys;
+package com.talk.myapp.wetalk.activitys.login;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -11,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.talk.myapp.wetalk.R;
+import com.talk.myapp.wetalk.activitys.login.LoginFinishActivity;
 
 public class UserNameInputActivity extends Activity implements View.OnClickListener {
 

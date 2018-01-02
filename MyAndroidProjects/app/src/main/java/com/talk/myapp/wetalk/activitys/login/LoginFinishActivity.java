@@ -1,4 +1,4 @@
-package com.talk.myapp.wetalk.activitys;
+package com.talk.myapp.wetalk.activitys.login;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.view.Window;
 import android.widget.LinearLayout;
 
 import com.talk.myapp.wetalk.R;
+import com.talk.myapp.wetalk.activitys.camera.CameraActivity;
 
 public class LoginFinishActivity extends Activity implements View.OnClickListener{
 

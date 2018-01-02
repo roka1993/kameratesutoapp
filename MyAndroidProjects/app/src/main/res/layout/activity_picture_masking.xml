@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.talk.myapp.wetalk.activitys.PictureMaskingActivity">
+    tools:context="com.talk.myapp.wetalk.activitys.camera.PictureMaskingActivity">
 
     <com.talk.myapp.wetalk.views.MaskingView
         android:id="@+id/masking_maskingView"
@@ -105,6 +105,54 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/camera_timer"/>
+    </LinearLayout>
+   <LinearLayout
+        android:id="@+id/timer_select_area"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/timer_select_background"
+       android:orientation="vertical"
+       android:visibility="gone">
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="设置浏览时长（秒）"
+           android:gravity="center"
+           android:layout_marginTop="30dp"
+           android:layout_marginBottom="30dp"
+           android:textSize="18sp"
+           android:textStyle="bold"
+           android:textColor="@color/colorTextBlack"/>
+        <RadioGroup
+            android:id="@+id/timer_select_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal"
+            android:background="@drawable/timer_select_background"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/time_7_radio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/timer_7_selector"
+                android:button="@null" />
+            <RadioButton
+                android:id="@+id/time_10_radio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/timer_10_selector"
+                android:button="@null" />
+            <RadioButton
+                android:id="@+id/time_15_radio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/timer_15_selector"
+                android:button="@null"/>
+        </RadioGroup>
     </LinearLayout>
     <ProgressBar
         android:id="@+id/progressBar"

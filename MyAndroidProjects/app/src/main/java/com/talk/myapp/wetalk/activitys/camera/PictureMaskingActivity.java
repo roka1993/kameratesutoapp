@@ -1,4 +1,4 @@
-package com.talk.myapp.wetalk.activitys;
+package com.talk.myapp.wetalk.activitys.camera;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -16,6 +16,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.talk.myapp.wetalk.R;
 import com.talk.myapp.wetalk.tasks.PictureSaveAsyncTask;
@@ -40,7 +42,8 @@ public class PictureMaskingActivity extends Activity implements View.OnClickList
     private Uri uri;
 
     //按钮
-    private LinearLayout sendButton,timerButton,maskingButton;
+    private LinearLayout sendButton,timerButton,maskingButton,timerSelectArea;
+    private RadioGroup timeSelectRadioGroup;
     //TODO 画弹出框并加动画
 
     @Override
@@ -109,11 +112,14 @@ public class PictureMaskingActivity extends Activity implements View.OnClickList
          sendButton = findViewById(R.id.picture_send_linear_layout);
          timerButton = findViewById(R.id.picture_timer_linear_layout);
          maskingButton = findViewById(R.id.masking_linear_layout);
-        progressBar = findViewById(R.id.progressBar);
+         timerSelectArea = findViewById(R.id.timer_select_area);
+         timeSelectRadioGroup = findViewById(R.id.timer_select_radio_group);
+         progressBar = findViewById(R.id.progressBar);
 
          sendButton.setOnClickListener(this);
          timerButton.setOnClickListener(this);
          maskingButton.setOnClickListener(this);
+        maskingView.setOnClickListener(this);
          maskingView.setOnPathCountChangeListener(this);
     }
     /**
@@ -163,29 +169,56 @@ public class PictureMaskingActivity extends Activity implements View.OnClickList
         }
 
         switch (v.getId()){
+            case R.id.masking_maskingView:
+                if(timerSelectArea.getVisibility()==View.VISIBLE){
+                    //显示时间选择区域时，如果选择了时间，则隐藏时间选择区域，并保存选择的浏览时长，显示其它按钮
+                                       //如果没选择时间，则弹出提示框，设置选择时间
+                    switch (timeSelectRadioGroup.getCheckedRadioButtonId()){
+                        case R.id.time_7_radio_button:
+                            //TODO 保存选择的浏览时长
+                            Toast.makeText(this,"保存选择的浏览时长7秒",Toast.LENGTH_SHORT).show();
+                            timerSelectArea.setVisibility(View.GONE);
+                            sendButton.setVisibility(View.VISIBLE);
+                            timerButton.setVisibility(View.VISIBLE);
+                            maskingButton.setVisibility(View.VISIBLE);
+                            break;
+                        case R.id.time_10_radio_button:
+                            Toast.makeText(this,"保存选择的浏览时长10秒",Toast.LENGTH_SHORT).show();
+                            timerSelectArea.setVisibility(View.GONE);
+                            sendButton.setVisibility(View.VISIBLE);
+                            timerButton.setVisibility(View.VISIBLE);
+                            maskingButton.setVisibility(View.VISIBLE);
+                            break;
+                        case R.id.time_15_radio_button:
+                            Toast.makeText(this,"保存选择的浏览时长15秒",Toast.LENGTH_SHORT).show();
+                            timerSelectArea.setVisibility(View.GONE);
+                            sendButton.setVisibility(View.VISIBLE);
+                            timerButton.setVisibility(View.VISIBLE);
+                            maskingButton.setVisibility(View.VISIBLE);
+                            break;
+                        default:
+                            Toast.makeText(this,"请选择浏览时长",Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                }
+                break;
             case R.id.picture_send_linear_layout:
                 //TODO 发送图片，关闭activity。。。保存图片。图片要记每一笔的动作时间（在别的地方写）
 
                 //保存图片  异步？？？？？
                 new PictureSaveAsyncTask(this, maskingView, progressBar).execute(uri);
-
-
-
                 //finish();
                 break;
             case R.id.picture_timer_linear_layout:
                 //TODO 隐藏画面的按钮，显示时间选择框
+                sendButton.setVisibility(View.GONE);
+                timerButton.setVisibility(View.GONE);
+                maskingButton.setVisibility(View.GONE);
+                timerSelectArea.setVisibility(View.VISIBLE);
                 break;
             case R.id.masking_linear_layout:
                 //TODO 显示画笔，确认按钮，删除按钮，撤销按钮？
                 break;
-
-
-
-            //保存
-//            case R.id.masking_done:
-//                new PictureSaveAsyncTask(this, maskingView, progressBar).execute(uri);
-//                break;
         }
 
     }

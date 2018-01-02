@@ -1,4 +1,4 @@
-package com.talk.myapp.wetalk.activitys;
+package com.talk.myapp.wetalk.activitys.login;
 
 import android.app.Activity;
 import android.content.Intent;
