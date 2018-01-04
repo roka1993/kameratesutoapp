@@ -1,29 +1,32 @@
 package com.talk.myapp.wetalk.activitys.camera;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.talk.myapp.wetalk.R;
+import com.talk.myapp.wetalk.adapters.EmojiGridViewAdapter;
 import com.talk.myapp.wetalk.tasks.PictureSaveAsyncTask;
 import com.talk.myapp.wetalk.utils.Consts;
 import com.talk.myapp.wetalk.utils.FileUtils;
 import com.talk.myapp.wetalk.views.MaskingView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PictureMaskingActivity extends Activity implements View.OnClickListener ,MaskingView.OnPathCountChangeListener{
 
@@ -46,6 +49,10 @@ public class PictureMaskingActivity extends Activity implements View.OnClickList
     private RadioGroup timeSelectRadioGroup;
     //TODO 画弹出框并加动画
 
+    private GridView gridView;
+    private EmojiGridViewAdapter gridViewAdapter;
+    //横屏滑动的gridview
+    HorizontalScrollView horizontalScrollView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,19 +115,57 @@ public class PictureMaskingActivity extends Activity implements View.OnClickList
      * 初始化控件
      */
     private void initWidget() {
-         maskingView = findViewById(R.id.masking_maskingView);
-         sendButton = findViewById(R.id.picture_send_linear_layout);
-         timerButton = findViewById(R.id.picture_timer_linear_layout);
-         maskingButton = findViewById(R.id.masking_linear_layout);
-         timerSelectArea = findViewById(R.id.timer_select_area);
-         timeSelectRadioGroup = findViewById(R.id.timer_select_radio_group);
-         progressBar = findViewById(R.id.progressBar);
+        maskingView = findViewById(R.id.masking_maskingView);
+        sendButton = findViewById(R.id.picture_send_linear_layout);
+        timerButton = findViewById(R.id.picture_timer_linear_layout);
+        maskingButton = findViewById(R.id.masking_linear_layout);
+        timerSelectArea = findViewById(R.id.timer_select_area);
+        timeSelectRadioGroup = findViewById(R.id.timer_select_radio_group);
+        progressBar = findViewById(R.id.progressBar);
+        gridView = findViewById(R.id.gridview);
+        horizontalScrollView = findViewById(R.id.scrollView);
+        horizontalScrollView.setHorizontalScrollBarEnabled(false);// 隐藏滚动条
+        setValue();
 
-         sendButton.setOnClickListener(this);
-         timerButton.setOnClickListener(this);
-         maskingButton.setOnClickListener(this);
+        sendButton.setOnClickListener(this);
+        timerButton.setOnClickListener(this);
+        maskingButton.setOnClickListener(this);
         maskingView.setOnClickListener(this);
-         maskingView.setOnPathCountChangeListener(this);
+        maskingView.setOnPathCountChangeListener(this);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                gridViewAdapter.setSelectedItemIndex(position);
+                gridViewAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    //GridView值的设定
+    private void setValue() {
+        //加载表情图片数据
+        List dataList = new ArrayList();
+        dataList.add(R.drawable.emoji_barrage_1);
+        dataList.add(R.drawable.emoji_barrage_2);
+        dataList.add(R.drawable.emoji_barrage_3);
+        dataList.add(R.drawable.emoji_barrage_4);
+        dataList.add(R.drawable.emoji_barrage_5);
+        dataList.add(R.drawable.emoji_barrage_6);
+        dataList.add(R.drawable.emoji_barrage_7);
+        dataList.add(R.drawable.emoji_barrage_8);
+        dataList.add(R.drawable.emoji_barrage_9);
+
+        gridViewAdapter= new EmojiGridViewAdapter(this,dataList);
+        gridView.setAdapter(gridViewAdapter);
+
+        //结合emoji_list_item.xml 设置gridview的宽度
+        int itemWidth = (int)((60+15*2) * this.getResources().getDisplayMetrics().density);
+        int marginWidth = (int)(30 * this.getResources().getDisplayMetrics().density);
+        int itemSize = dataList.size();
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(itemSize * itemWidth+marginWidth, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        gridView.setLayoutParams(params);
+        gridView.setNumColumns(itemSize);
     }
     /**
      * 加载图片到控件上
